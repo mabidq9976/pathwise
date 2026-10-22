@@ -18,7 +18,21 @@ permissions:
   contents: write
 
 jobs:
+  # One draft release for the tag, created before the builds: the Mac and
+  # Windows jobs upload into it instead of racing to create one each, and it
+  # is published only when both succeed, so installed apps never see a
+  # half-finished release.
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh release view "$TAG" -R "$REPO" >/dev/null 2>&1 || gh release create "$TAG" -R "$REPO" --draft --title "Pathwise ${TAG#v}" --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+
   build:
+    needs: release
     strategy:
       fail-fast: false
       matrix:
@@ -53,3 +67,13 @@ jobs:
       - run: npm run release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh release edit "$TAG" -R "$REPO" --draft=false --latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}

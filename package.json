@@ -92,7 +92,7 @@
         "provider": "github",
         "owner": "mabidq9976",
         "repo": "pathwise",
-        "releaseType": "release"
+        "releaseType": "draft"
       }
     ]
   }

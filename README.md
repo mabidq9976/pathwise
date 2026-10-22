@@ -1,6 +1,6 @@
 # Pathwise
 
-An computer vision image-to-vector webapp. It traces PNG, JPG, WebP, GIF and BMP bitmaps into
+An computer vision based image-to-vector webapp. It traces PNG, JPG, WebP, GIF and BMP bitmaps into
 SVG, PDF, EPS, DXF or high-resolution PNG. Tracing runs locally in the browser
 (in a Web Worker), so images are never uploaded.
 

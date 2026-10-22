@@ -2,13 +2,14 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { test } from 'node:test';
 import { precisionTrace } from '../src/precision/engine.ts';
 import { profileImage, PRESETS, toPrecisionOptions, toTracerConfig } from '../src/settings.ts';
 import { countNodes, flatten, fmt, nearestAci, palette, parsePathData, parseTracerSvg, toDxf, toEps, toPdf, toSvg } from '../src/vector.ts';
 
 const pkgDir = dirname(createRequire(import.meta.url).resolve('vtracer-wasm/package.json'));
-const vtracer = await import(join(pkgDir, 'vtracer.js'));
+const vtracer = await import(pathToFileURL(join(pkgDir, 'vtracer.js')).href);
 vtracer.initSync({ module: readFileSync(join(pkgDir, 'vtracer.wasm')) });
 
 /** 120×80 image: blue left half, white right half, red disc in the middle. */

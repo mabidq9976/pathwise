@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pathwise QA</title>
+    <style>
+      body { margin: 0; padding: 16px; font: 13px/1.4 system-ui, sans-serif; background: #f4f4f7; color: #16161d; }
+      h1 { font-size: 18px; margin: 0 0 4px; }
+      table { border-collapse: collapse; background: #fff; margin: 12px 0 20px; }
+      th, td { padding: 4px 10px; border-bottom: 1px solid #e3e3ea; text-align: right; font-variant-numeric: tabular-nums; }
+      th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
+      .crops { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+      .crop { background: #fff; padding: 6px; border-radius: 8px; }
+      .crop .pair { display: flex; gap: 4px; }
+      .crop .pair > * { flex: none; }
+      .label { font-size: 11px; color: #62627a; margin-bottom: 4px; }
+      .bad { color: #c62828; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <h1>Pathwise QA</h1>
+    <div id="status">Running…</div>
+    <div id="out"></div>
+    <script type="module" src="/src/qa.ts"></script>
+  </body>
+</html>

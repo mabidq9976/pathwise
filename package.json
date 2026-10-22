@@ -1,0 +1,99 @@
+{
+  "name": "pathwise",
+  "productName": "Pathwise",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Image-to-vector app that traces PNG/JPG/WebP into SVG, PDF, EPS and DXF locally, with an optional on-device AI upscaler.",
+  "author": "Pathwise",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mabidq9976/pathwise.git"
+  },
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "desktop": "vite build && electron .",
+    "dist": "tsc --noEmit && vite build && electron-builder --publish never",
+    "release": "tsc --noEmit && vite build && electron-builder --publish always"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9",
+    "vtracer-wasm": "^0.1.0"
+  },
+  "devDependencies": {
+    "@webgpu/types": "^0.1.74",
+    "electron": "^45.0.0",
+    "electron-builder": "^26.15.3",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5"
+  },
+  "build": {
+    "appId": "app.pathwise.desktop",
+    "productName": "Pathwise",
+    "copyright": "Copyright © 2026 Pathwise",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.graphics-design",
+      "icon": "build/icon.png"
+    },
+    "dmg": {
+      "title": "Pathwise ${version}"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Pathwise",
+      "artifactName": "Pathwise-Setup-${version}.${ext}"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "mabidq9976",
+        "repo": "pathwise",
+        "releaseType": "release"
+      }
+    ]
+  }
+}

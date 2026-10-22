@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Convert PNG, JPG and WebP images to SVG, PDF, EPS and DXF vectors, right in your browser." />
+    <title>Pathwise · Image to Vector</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4bff'/%3E%3Cpath d='M7 23C10 9 22 23 25 9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Pathwise home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" class="brand-tile" /><path d="M7 23C10 9 22 23 25 9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" /><circle cx="7" cy="23" r="2.6" fill="#fff" /><circle cx="25" cy="9" r="2.6" fill="#fff" /></svg>
+        <span>Pathwise</span>
+      </a>
+      <span class="pill" id="privacy-pill" title="Images are traced on your device and never uploaded.">Private · runs in your browser</span>
+      <button id="new-image" class="btn ghost" type="button" hidden>New image</button>
+    </header>
+
+    <main>
+      <section id="landing" class="landing">
+        <div class="hero">
+          <h1>Turn pixels into clean, scalable vectors</h1>
+          <p class="lede">
+            Drop in a PNG, JPG, WebP, AVIF, GIF or BMP and get crisp SVG, PDF, EPS or DXF back.
+            It picks settings automatically, and every setting can be adjusted.
+          </p>
+        </div>
+
+        <div id="dropzone" class="dropzone">
+          <svg class="drop-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 31V11m0 0-8 8m8-8 8 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M9 29v6a4 4 0 0 0 4 4h22a4 4 0 0 0 4-4v-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
+          <button class="btn primary big" id="pick" type="button">Choose image</button>
+          <p>or drop a file anywhere · paste with <kbd>⌘V</kbd> / <kbd>Ctrl V</kbd></p>
+          <p class="fine">PNG, JPG, WebP, AVIF, GIF, BMP · up to 40 MB · nothing is uploaded</p>
+        </div>
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/avif,image/gif,image/bmp" hidden />
+
+        <div class="examples">
+          <h2>No image handy? Try one</h2>
+          <div id="example-grid" class="example-grid"></div>
+        </div>
+
+        <ol class="steps">
+          <li><strong>Pick</strong><span>Choose, drop or paste a bitmap.</span></li>
+          <li><strong>Trace</strong><span>Colours are clustered, then each region is fitted with curves and corners.</span></li>
+          <li><strong>Download</strong><span>SVG, PDF, EPS, DXF or a high-resolution PNG.</span></li>
+        </ol>
+      </section>
+
+      <section id="editor" class="editor" hidden>
+        <div class="canvas-col">
+          <div class="view-toolbar">
+            <div class="seg" id="view-mode" role="radiogroup" aria-label="View">
+              <button type="button" role="radio" data-value="original" title="Original (1)">Original</button>
+              <button type="button" role="radio" data-value="split" title="Compare (2)">Compare</button>
+              <button type="button" role="radio" data-value="vector" title="Vector (3)">Vector</button>
+              <button type="button" role="radio" data-value="outlines" title="Outlines (4)">Outlines</button>
+            </div>
+            <div class="file-meta" id="file-meta"></div>
+          </div>
+          <div class="viewer-wrap">
+            <div id="viewer"></div>
+            <div class="busy" id="busy" hidden><span class="spinner" aria-hidden="true"></span><span id="busy-label">Tracing…</span></div>
+          </div>
+        </div>
+
+        <aside class="panel" aria-label="Settings and download">
+          <section class="panel-block">
+            <h3>Preset</h3>
+            <div class="chips" id="presets"></div>
+            <p class="hint" id="preset-hint"></p>
+          </section>
+
+          <section class="panel-block">
+            <h3>Output</h3>
+            <div class="field">
+              <span class="field-label">Engine</span>
+              <div class="seg small" data-setting="engine" role="radiogroup" aria-label="Tracing engine">
+                <button type="button" role="radio" data-value="precision" title="Sub-pixel edges, reconstructed corners, exact lines/circles. Best for logos, text, icons and line art.">Precision</button>
+                <button type="button" role="radio" data-value="classic" title="Hierarchical colour clustering (vtracer). Best for photos, gradients and pixel art.">Classic</button>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Enhance (AI, on your GPU)</span>
+              <div class="seg small" data-setting="enhance" role="radiogroup" aria-label="AI enhance">
+                <button type="button" role="radio" data-value="off">Off</button>
+                <button type="button" role="radio" data-value="x2">2×</button>
+                <button type="button" role="radio" data-value="x4">4×</button>
+              </div>
+              <p class="hint" id="enhance-hint"></p>
+            </div>
+            <div class="field">
+              <span class="field-label">Outline</span>
+              <div class="seg small" data-setting="outline" role="radiogroup" aria-label="Outline style">
+                <button type="button" role="radio" data-value="detailed">Detailed</button>
+                <button type="button" role="radio" data-value="balanced">Balanced</button>
+                <button type="button" role="radio" data-value="minimal">Minimal</button>
+              </div>
+              <p class="hint" id="outline-hint"></p>
+            </div>
+            <div class="field">
+              <span class="field-label">Colour</span>
+              <div class="seg small" data-setting="colorMode" role="radiogroup" aria-label="Colour mode">
+                <button type="button" role="radio" data-value="color">Full colour</button>
+                <button type="button" role="radio" data-value="binary">Black &amp; white</button>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Shapes</span>
+              <div class="seg small" data-setting="hierarchical" role="radiogroup" aria-label="Shape stacking">
+                <button type="button" role="radio" data-value="stacked" title="Shapes sit on top of each other: no hairline gaps">Stacked</button>
+                <button type="button" role="radio" data-value="cutout" title="Shapes never overlap: better for cutting and embroidery">Cutouts</button>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Curves</span>
+              <div class="seg small" data-setting="mode" role="radiogroup" aria-label="Curve fitting">
+                <button type="button" role="radio" data-value="spline" title="Smooth Bézier curves with detected corners">Spline</button>
+                <button type="button" role="radio" data-value="polygon" title="Straight segments only">Polygon</button>
+                <button type="button" role="radio" data-value="pixel" title="Follow pixel edges exactly">Pixel</button>
+              </div>
+            </div>
+          </section>
+
+          <details class="panel-block" open>
+            <summary><h3>Fine tuning</h3></summary>
+            <div id="sliders" class="sliders"></div>
+            <button class="link" id="reset" type="button">Reset to automatic</button>
+          </details>
+
+          <section class="panel-block">
+            <h3>Palette <span class="count" id="palette-count"></span></h3>
+            <div id="palette" class="palette" role="list"></div>
+            <p class="hint">Click a colour to highlight its shapes.</p>
+          </section>
+
+          <section class="panel-block">
+            <dl class="stats" id="stats"></dl>
+          </section>
+
+          <section class="panel-block download">
+            <h3>Download</h3>
+            <button class="btn primary wide" type="button" data-export="svg">Download SVG</button>
+            <div class="export-grid">
+              <button class="btn" type="button" data-export="pdf">PDF</button>
+              <button class="btn" type="button" data-export="eps">EPS</button>
+              <button class="btn" type="button" data-export="dxf">DXF</button>
+              <div class="png-group">
+                <button class="btn" type="button" data-export="png">PNG</button>
+                <select id="png-scale" aria-label="PNG scale">
+                  <option value="1">1×</option>
+                  <option value="2" selected>2×</option>
+                  <option value="4">4×</option>
+                </select>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <div id="drop-overlay" class="drop-overlay" hidden><div>Drop to vectorize</div></div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

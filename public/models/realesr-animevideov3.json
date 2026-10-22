@@ -1,0 +1,484 @@
+{
+ "source": "xinntao/Real-ESRGAN v0.2.5.0 realesr-animevideov3.pth (BSD-3-Clause)",
+ "dtype": "float32-le",
+ "tensors": [
+  {
+   "name": "body.0.weight",
+   "shape": [
+    64,
+    3,
+    3,
+    3
+   ],
+   "offset": 0,
+   "length": 1728
+  },
+  {
+   "name": "body.0.bias",
+   "shape": [
+    64
+   ],
+   "offset": 1728,
+   "length": 64
+  },
+  {
+   "name": "body.1.weight",
+   "shape": [
+    64
+   ],
+   "offset": 1792,
+   "length": 64
+  },
+  {
+   "name": "body.2.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 1856,
+   "length": 36864
+  },
+  {
+   "name": "body.2.bias",
+   "shape": [
+    64
+   ],
+   "offset": 38720,
+   "length": 64
+  },
+  {
+   "name": "body.3.weight",
+   "shape": [
+    64
+   ],
+   "offset": 38784,
+   "length": 64
+  },
+  {
+   "name": "body.4.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 38848,
+   "length": 36864
+  },
+  {
+   "name": "body.4.bias",
+   "shape": [
+    64
+   ],
+   "offset": 75712,
+   "length": 64
+  },
+  {
+   "name": "body.5.weight",
+   "shape": [
+    64
+   ],
+   "offset": 75776,
+   "length": 64
+  },
+  {
+   "name": "body.6.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 75840,
+   "length": 36864
+  },
+  {
+   "name": "body.6.bias",
+   "shape": [
+    64
+   ],
+   "offset": 112704,
+   "length": 64
+  },
+  {
+   "name": "body.7.weight",
+   "shape": [
+    64
+   ],
+   "offset": 112768,
+   "length": 64
+  },
+  {
+   "name": "body.8.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 112832,
+   "length": 36864
+  },
+  {
+   "name": "body.8.bias",
+   "shape": [
+    64
+   ],
+   "offset": 149696,
+   "length": 64
+  },
+  {
+   "name": "body.9.weight",
+   "shape": [
+    64
+   ],
+   "offset": 149760,
+   "length": 64
+  },
+  {
+   "name": "body.10.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 149824,
+   "length": 36864
+  },
+  {
+   "name": "body.10.bias",
+   "shape": [
+    64
+   ],
+   "offset": 186688,
+   "length": 64
+  },
+  {
+   "name": "body.11.weight",
+   "shape": [
+    64
+   ],
+   "offset": 186752,
+   "length": 64
+  },
+  {
+   "name": "body.12.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 186816,
+   "length": 36864
+  },
+  {
+   "name": "body.12.bias",
+   "shape": [
+    64
+   ],
+   "offset": 223680,
+   "length": 64
+  },
+  {
+   "name": "body.13.weight",
+   "shape": [
+    64
+   ],
+   "offset": 223744,
+   "length": 64
+  },
+  {
+   "name": "body.14.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 223808,
+   "length": 36864
+  },
+  {
+   "name": "body.14.bias",
+   "shape": [
+    64
+   ],
+   "offset": 260672,
+   "length": 64
+  },
+  {
+   "name": "body.15.weight",
+   "shape": [
+    64
+   ],
+   "offset": 260736,
+   "length": 64
+  },
+  {
+   "name": "body.16.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 260800,
+   "length": 36864
+  },
+  {
+   "name": "body.16.bias",
+   "shape": [
+    64
+   ],
+   "offset": 297664,
+   "length": 64
+  },
+  {
+   "name": "body.17.weight",
+   "shape": [
+    64
+   ],
+   "offset": 297728,
+   "length": 64
+  },
+  {
+   "name": "body.18.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 297792,
+   "length": 36864
+  },
+  {
+   "name": "body.18.bias",
+   "shape": [
+    64
+   ],
+   "offset": 334656,
+   "length": 64
+  },
+  {
+   "name": "body.19.weight",
+   "shape": [
+    64
+   ],
+   "offset": 334720,
+   "length": 64
+  },
+  {
+   "name": "body.20.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 334784,
+   "length": 36864
+  },
+  {
+   "name": "body.20.bias",
+   "shape": [
+    64
+   ],
+   "offset": 371648,
+   "length": 64
+  },
+  {
+   "name": "body.21.weight",
+   "shape": [
+    64
+   ],
+   "offset": 371712,
+   "length": 64
+  },
+  {
+   "name": "body.22.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 371776,
+   "length": 36864
+  },
+  {
+   "name": "body.22.bias",
+   "shape": [
+    64
+   ],
+   "offset": 408640,
+   "length": 64
+  },
+  {
+   "name": "body.23.weight",
+   "shape": [
+    64
+   ],
+   "offset": 408704,
+   "length": 64
+  },
+  {
+   "name": "body.24.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 408768,
+   "length": 36864
+  },
+  {
+   "name": "body.24.bias",
+   "shape": [
+    64
+   ],
+   "offset": 445632,
+   "length": 64
+  },
+  {
+   "name": "body.25.weight",
+   "shape": [
+    64
+   ],
+   "offset": 445696,
+   "length": 64
+  },
+  {
+   "name": "body.26.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 445760,
+   "length": 36864
+  },
+  {
+   "name": "body.26.bias",
+   "shape": [
+    64
+   ],
+   "offset": 482624,
+   "length": 64
+  },
+  {
+   "name": "body.27.weight",
+   "shape": [
+    64
+   ],
+   "offset": 482688,
+   "length": 64
+  },
+  {
+   "name": "body.28.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 482752,
+   "length": 36864
+  },
+  {
+   "name": "body.28.bias",
+   "shape": [
+    64
+   ],
+   "offset": 519616,
+   "length": 64
+  },
+  {
+   "name": "body.29.weight",
+   "shape": [
+    64
+   ],
+   "offset": 519680,
+   "length": 64
+  },
+  {
+   "name": "body.30.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 519744,
+   "length": 36864
+  },
+  {
+   "name": "body.30.bias",
+   "shape": [
+    64
+   ],
+   "offset": 556608,
+   "length": 64
+  },
+  {
+   "name": "body.31.weight",
+   "shape": [
+    64
+   ],
+   "offset": 556672,
+   "length": 64
+  },
+  {
+   "name": "body.32.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "offset": 556736,
+   "length": 36864
+  },
+  {
+   "name": "body.32.bias",
+   "shape": [
+    64
+   ],
+   "offset": 593600,
+   "length": 64
+  },
+  {
+   "name": "body.33.weight",
+   "shape": [
+    64
+   ],
+   "offset": 593664,
+   "length": 64
+  },
+  {
+   "name": "body.34.weight",
+   "shape": [
+    48,
+    64,
+    3,
+    3
+   ],
+   "offset": 593728,
+   "length": 27648
+  },
+  {
+   "name": "body.34.bias",
+   "shape": [
+    48
+   ],
+   "offset": 621376,
+   "length": 48
+  }
+ ]
+}
